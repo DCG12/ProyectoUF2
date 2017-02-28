@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.a46406163y.proyectouf2.MainActivityFragment"
+    tools:showIn="@layout/activity_main">
+
+    <Button
+        android:text="Foto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bttnfoto"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintRight_toLeftOf="@+id/guideline"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/bttnrep"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <Button
+        android:text="Video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bttnvideo"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+        app:layout_constraintBottom_toTopOf="@+id/bttnmapa"
+        android:layout_marginBottom="8dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline"
+        app:layout_constraintGuide_begin="191dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="0dp"
+        tools:layout_editor_absoluteX="191dp" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline2"
+        app:layout_constraintGuide_begin="224dp"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="224dp"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:text="Mapa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bttnmapa"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintLeft_toLeftOf="@+id/guideline"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp" />
+
+    <Button
+        android:text="Reprod."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bttnrep"
+        app:layout_constraintTop_toTopOf="@+id/guideline2"
+        app:layout_constraintRight_toLeftOf="@+id/guideline"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="16dp" />
+
+    <GridView
+        android:layout_width="212dp"
+        android:layout_height="176dp"
+        android:layout_marginStart="80dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:layout_marginBottom="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="16dp"
+        app:layout_constraintHorizontal_bias="0.04"
+        app:layout_constraintVertical_bias="0.66" />
+
+</android.support.constraint.ConstraintLayout>
