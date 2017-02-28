@@ -20,11 +20,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
-
 
     private Button bttnfoto;
     private Button bttnvideo;
@@ -69,9 +70,18 @@ public class MainActivityFragment extends Fragment {
             }
         });
 
+        bttnMap.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Mapping.class);
+                startActivity(intent);
+            }
+
+        });
+
         return view;
     }
-    
+
     private File createImageFile(int requestTakePhoto)  {
 
         // Create an image file name
@@ -92,7 +102,6 @@ public class MainActivityFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
@@ -128,11 +137,9 @@ public class MainActivityFragment extends Fragment {
 
     private void dispatchTakePictureIntent() {
 
-
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
-
 
             File photoFile = null;
             photoFile = createImageFile(REQUEST_TAKE_PHOTO);
@@ -148,11 +155,9 @@ public class MainActivityFragment extends Fragment {
 
     private void dispatchTakeVideoIntent() {
 
-
         Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
 
         if (takeVideoIntent.resolveActivity(getContext().getPackageManager()) != null) {
-
 
             File videoFile = null;
             videoFile = createVideoFile(REQUEST_TAKE_VIDEO);
