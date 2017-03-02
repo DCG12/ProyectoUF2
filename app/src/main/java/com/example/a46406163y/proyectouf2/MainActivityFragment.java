@@ -1,8 +1,11 @@
 package com.example.a46406163y.proyectouf2;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -14,6 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageView;
+import com.bumptech.glide.Glide;
+
 import com.alexvasilkov.events.Events;
 
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -23,7 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import java.util.HashMap;
 
 
 /**
@@ -38,7 +44,7 @@ public class MainActivityFragment extends Fragment {
     private Button bttnRec;
     private Button bttnMap;
     private String mCurrentPhotoPath;
-    private GridView Vista;
+    private ImageView Vista;
 
     private static final int REQUEST_TAKE_PHOTO = 1;
     private static final int ACTIVITAT_SELECCIONAR_IMATGE = 1;
@@ -57,6 +63,8 @@ public class MainActivityFragment extends Fragment {
         bttnvideo =(Button) view.findViewById(R.id.bttnvideo);
         bttnMap =(Button) view.findViewById(R.id.bttnmapa);
         bttnRec =(Button) view.findViewById(R.id.bttnrep);
+        Vista = (ImageView) view.findViewById(R.id.imagen);
+
 
         bttnfoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,5 +185,38 @@ public class MainActivityFragment extends Fragment {
         }
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        try {
+
+            if (requestCode == REQUEST_TAKE_PHOTO) {
+
+                    Glide.with(getContext()).load( mCurrentPhotoPath).into(Vista);
+                
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public static Bitmap getVideoFrame(Context context, Uri uri) {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        try {
+            retriever.setDataSource(uri.toString(),new HashMap<String, String>());
+            return retriever.getFrameAtTime();
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+        } catch (RuntimeException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                retriever.release();
+            } catch (RuntimeException ex) {
+            }
+        }
+        return null;
+    }
 
 }
