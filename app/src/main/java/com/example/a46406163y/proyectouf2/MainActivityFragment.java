@@ -14,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
+import com.alexvasilkov.events.Events;
+
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.views.MapView;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +30,8 @@ import java.util.Date;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
+
+
 
     private Button bttnfoto;
     private Button bttnvideo;
@@ -73,7 +79,7 @@ public class MainActivityFragment extends Fragment {
         bttnMap.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Mapping.class);
+                Intent intent = new Intent(getContext(),Mapa.class);
                 startActivity(intent);
             }
 
@@ -170,4 +176,6 @@ public class MainActivityFragment extends Fragment {
             }
         }
     }
+
+
 }
