@@ -45,7 +45,6 @@ public class MapaFragment extends Fragment {
         initializeMap();
         setZoom();
         setOverlays();
-
         map.invalidate();
 
         return view;

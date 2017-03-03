@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
 
 import com.alexvasilkov.events.Events;
@@ -46,6 +48,10 @@ public class MainActivityFragment extends Fragment {
     private String mCurrentPhotoPath;
     private ImageView Vista;
 
+    private GPS gps;
+    double longitude;
+    double latitude;
+
     private static final int REQUEST_TAKE_PHOTO = 1;
     private static final int ACTIVITAT_SELECCIONAR_IMATGE = 1;
     private static final int REQUEST_TAKE_VIDEO = 2;
@@ -65,7 +71,23 @@ public class MainActivityFragment extends Fragment {
         bttnRec =(Button) view.findViewById(R.id.bttnrep);
         Vista = (ImageView) view.findViewById(R.id.imagen);
 
+        gps = new GPS(getContext());
 
+
+        if(gps.canGetLocation()){
+
+
+            longitude = gps.getLongitude();
+            latitude = gps .getLatitude();
+
+            Log.d("DEBUG", String.valueOf(latitude));
+        }
+        else
+        {
+
+            gps.showSettingsAlert();
+        }
+        
         bttnfoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
