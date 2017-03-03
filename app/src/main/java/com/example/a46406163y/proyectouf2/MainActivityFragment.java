@@ -20,9 +20,12 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import com.bumptech.glide.Glide;
 
-import com.alexvasilkov.events.Events;
+
 
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
@@ -40,13 +43,15 @@ import java.util.HashMap;
 public class MainActivityFragment extends Fragment {
 
 
-
     private Button bttnfoto;
     private Button bttnvideo;
     private Button bttnRec;
     private Button bttnMap;
     private String mCurrentPhotoPath;
     private ImageView Vista;
+
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference reference;
 
     private GPS gps;
     double longitude;
@@ -87,7 +92,15 @@ public class MainActivityFragment extends Fragment {
 
             gps.showSettingsAlert();
         }
-        
+
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        reference = firebaseDatabase.getReference("lugares");
+
+
+
+        super.onCreate(savedInstanceState);
+
+
         bttnfoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,6 +154,8 @@ public class MainActivityFragment extends Fragment {
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        DatabaseReference newReference = reference.push();
+        newReference.setValue(image.getAbsolutePath());
 
         return image;
     }
@@ -214,7 +229,8 @@ public class MainActivityFragment extends Fragment {
 
             if (requestCode == REQUEST_TAKE_PHOTO) {
 
-                    Glide.with(getContext()).load( mCurrentPhotoPath).into(Vista);
+                Glide.with(getContext()).load( mCurrentPhotoPath).into(Vista);
+
                 
             }
         } catch (Exception e) {
