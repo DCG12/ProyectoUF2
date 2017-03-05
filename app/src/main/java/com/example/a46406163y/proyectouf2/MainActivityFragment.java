@@ -26,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.bumptech.glide.Glide;
 
 
-
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.views.MapView;
 
@@ -41,7 +40,6 @@ import java.util.HashMap;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends Fragment {
-
 
     private Button bttnfoto;
     private Button bttnvideo;
@@ -60,7 +58,9 @@ public class MainActivityFragment extends Fragment {
     private static final int REQUEST_TAKE_PHOTO = 1;
     private static final int ACTIVITAT_SELECCIONAR_IMATGE = 1;
     private static final int REQUEST_TAKE_VIDEO = 2;
-    private Uri fileUri;;
+    private Uri fileUri;
+
+    private POJO pojo;
 
     public MainActivityFragment() {
     }
@@ -128,6 +128,18 @@ public class MainActivityFragment extends Fragment {
 
         });
 
+        bttnRec.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+        pojo = new POJO(mCurrentPhotoPath, longitude, latitude );
+
+        DatabaseReference newReference = reference.push();
+        newReference.setValue(pojo);
+            }
+
+        });
+
         return view;
     }
 
@@ -154,8 +166,9 @@ public class MainActivityFragment extends Fragment {
 
         // Save a file: path for use with ACTION_VIEW intents
         mCurrentPhotoPath = "file:" + image.getAbsolutePath();
+        /*
         DatabaseReference newReference = reference.push();
-        newReference.setValue(image.getAbsolutePath());
+        newReference.setValue(image.getAbsolutePath(),latitude);*/
 
         return image;
     }
@@ -231,7 +244,10 @@ public class MainActivityFragment extends Fragment {
 
                 Glide.with(getContext()).load( mCurrentPhotoPath).into(Vista);
 
-                
+                if(requestCode == REQUEST_TAKE_VIDEO){
+                    
+                    Glide.with(getContext()).load( mCurrentPhotoPath).into(Vista);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
