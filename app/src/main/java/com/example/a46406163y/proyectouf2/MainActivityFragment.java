@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -45,8 +46,11 @@ public class MainActivityFragment extends Fragment {
     private Button bttnvideo;
     private Button bttnRec;
     private Button bttnMap;
+    private Button bttnCall;
     private String mCurrentPhotoPath;
     private ImageView Vista;
+
+    private MediaPlayer mp = new MediaPlayer();
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference reference;
@@ -74,6 +78,8 @@ public class MainActivityFragment extends Fragment {
         bttnvideo =(Button) view.findViewById(R.id.bttnvideo);
         bttnMap =(Button) view.findViewById(R.id.bttnmapa);
         bttnRec =(Button) view.findViewById(R.id.bttnrep);
+        bttnCall =(Button) view.findViewById(R.id.bttncall);
+
         Vista = (ImageView) view.findViewById(R.id.imagen);
 
         gps = new GPS(getContext());
@@ -136,6 +142,15 @@ public class MainActivityFragment extends Fragment {
 
         DatabaseReference newReference = reference.push();
         newReference.setValue(pojo);
+            }
+
+        });
+
+        bttnCall.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+
             }
 
         });

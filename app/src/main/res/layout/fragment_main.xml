@@ -68,7 +68,7 @@
         android:layout_marginRight="16dp" />
 
     <Button
-        android:text="Reprod."
+        android:text="Guardar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/bttnrep"
@@ -95,5 +95,13 @@
         android:layout_marginRight="16dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         android:layout_marginBottom="8dp" />
+
+    <Button
+        android:text="Llamada"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteY="376dp"
+        tools:layout_editor_absoluteX="56dp"
+        android:id="@+id/bttncall" />
 
 </android.support.constraint.ConstraintLayout>
