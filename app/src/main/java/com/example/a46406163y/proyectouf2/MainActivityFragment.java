@@ -47,6 +47,7 @@ public class MainActivityFragment extends Fragment {
     private Button bttnRec;
     private Button bttnMap;
     private Button bttnCall;
+    private Button bttnStop;
     private String mCurrentPhotoPath;
     private ImageView Vista;
 
@@ -79,6 +80,7 @@ public class MainActivityFragment extends Fragment {
         bttnMap =(Button) view.findViewById(R.id.bttnmapa);
         bttnRec =(Button) view.findViewById(R.id.bttnrep);
         bttnCall =(Button) view.findViewById(R.id.bttncall);
+        bttnStop =(Button) view.findViewById(R.id.bttnStop);
 
         Vista = (ImageView) view.findViewById(R.id.imagen);
 
@@ -150,6 +152,19 @@ public class MainActivityFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                mp = MediaPlayer.create(getContext(), R.raw.ghost );
+
+                mp.start();
+
+            }
+
+        });
+
+        bttnStop.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                mp.stop();
 
             }
 
